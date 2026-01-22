@@ -12,10 +12,12 @@ jobs:
        run: docker images
      - name: Create Container
        run:  docker run --name mypythonapp -itd -p 7991:8080 ${{ vars.DOCKER_USERNAME }}/docker-python-image:v1
+     - name: Wait Time
+       run:  sleep 20
      - name: Verify Container
        run:  docker ps
      - name: Curl Output
-       run:  curl http://localhost:7991 
+       run:  curl -f http://localhost:7991 
      - name: Docker Login
        uses: docker/login-action@v3.6.0
        with:
