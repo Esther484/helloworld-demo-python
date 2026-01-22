@@ -26,5 +26,5 @@ jobs:
      - name: Docker Push
        run: docker push ${{ vars.DOCKER_USERNAME }}/docker-python-image:v1
      - name: Clean up
-       run:  docker rm mypythonapp
+       run:  docker rm -f mypythonapp
        
