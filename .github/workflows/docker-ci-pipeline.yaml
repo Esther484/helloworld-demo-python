@@ -6,7 +6,6 @@ on:
    - 'LICENSE'
    - 'Dockerfile'
    - 'CONTRIBUTING.md'
-   - 'sample'
 jobs:
   docker-job:
    runs-on: ubuntu-latest
