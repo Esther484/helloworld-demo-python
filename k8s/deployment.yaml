@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: esther-image-deployment
-  namespace: python-app
+  namespace: esther-ns
   labels:
     app: python
     name: esther-app
