@@ -53,12 +53,12 @@ jobs:
        kubectl apply -f k8s/deployment.yaml
        kubectl apply -f k8s/service.yaml
        sleep 20 
-       kubectl config set-context --current --namespace=python-app
+       kubectl config set-context --current --namespace=esther-ns
        kubectl wait --for=condition=ready pod -l app=python,name=esther-app
     - name: verify-status
       run: |
        kubectl get ns
-       kubectl get deploy,svc -n python-app
+       kubectl get deploy,svc -n esther-ns
     
     - name: Test service URLs
       run: |
