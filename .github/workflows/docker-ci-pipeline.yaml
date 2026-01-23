@@ -49,10 +49,8 @@ jobs:
 
     - name: Run-yaml-file
       run: |
-       kubectl apply -f k8s/namespace.yaml
+       kubectl apply -f k8s/.
        kubectl config set-context --current --namespace=esther-ns
-       kubectl apply -f k8s/deployment.yaml
-       kubectl apply -f k8s/service.yaml
        sleep 20 
        kubectl wait --for=condition=ready pod -l app=python,name=esther-app
     - name: verify-status
@@ -65,7 +63,7 @@ jobs:
        minikube service list
        minikube service esther-image-service --url
        echo -n "------------------opening the service------------------"
-       curl -f $(minikube service esther-image-service --url)/version
+       curl -f $(minikube service esther-image-service -n esther-ns --url)/version
 
      
      
