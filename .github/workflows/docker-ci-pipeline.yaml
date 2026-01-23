@@ -50,10 +50,10 @@ jobs:
     - name: Run-yaml-file
       run: |
        kubectl apply -f k8s/namespace.yaml
+       kubectl config set-context --current --namespace=esther-ns
        kubectl apply -f k8s/deployment.yaml
        kubectl apply -f k8s/service.yaml
        sleep 20 
-       kubectl config set-context --current --namespace=esther-ns
        kubectl wait --for=condition=ready pod -l app=python,name=esther-app
     - name: verify-status
       run: |
