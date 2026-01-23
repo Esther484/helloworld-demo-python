@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: esther-image-deployment
+  namespace: python-app
+  labels:
+    app: python
+    name: esther-app
+spec:
+  replicas: 7
+  selector:
+    matchLabels:
+      app: python
+      name: esther-app
+  template:
+    metadata:
+      labels:
+        app: python
+        name: esther-app
+    spec:
+      containers:
+      - name: python
+        image: esther4/docker-python-image:v1
+        ports:
+        - containerPort: 8080
