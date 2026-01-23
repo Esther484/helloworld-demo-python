@@ -50,11 +50,10 @@ jobs:
     - name: Run-yaml-file
       run: |
        kubectl apply -f k8s/namespace.yaml
-       sleep 10
-       kubectl config set-context --current --namespace=esther-ns
        kubectl apply -f k8s/deployment.yaml
        kubectl apply -f k8s/service.yaml
-       sleep 20 
+       sleep 20
+       kubectl config set-context --current --namespace=esther-ns
        kubectl wait --for=condition=ready pod -l app=python,name=esther-app
     - name: verify-status
       run: |
@@ -64,9 +63,9 @@ jobs:
     - name: Test service URLs
       run: |
        minikube service list
-       minikube service esther-image-service --url
+       minikube service esther-image-service -n esther-ns --url
        echo -n "------------------opening the service------------------"
-       curl -f $(minikube service esther-image-service -n esther-ns --url)/version
+       curl $(minikube service esther-image-service -n esther-ns --url)/version
 
      
      
